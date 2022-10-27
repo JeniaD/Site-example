@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <title>PrayForUA - продукти</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="/static/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="/static/assets/css/templatemo-sixteen.css">
+    <link rel="stylesheet" href="/static/assets/css/owl.css">
+
+  </head>
+
+  <body>
+
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>  
+    <!-- ***** Preloader End ***** -->
+
+    <!-- Header -->
+    <header class="">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="home"><h2><span class="l1">Pray</span>FOR<em>UA</em></h2></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/home">Головна
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li> 
+              <li class="nav-item active">
+                <a class="nav-link" href="/products">Наші Продукти</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/contact">Контакти</a>
+              </li>
+
+              {% if session["admin"] == "confirmed" %}
+              <li class="nav-item">
+                <a class="nav-link" href="/admin">Адмін-панель</a>
+              </li>
+              <li><button class="buyButton" style="height: 50px" onclick="window.location.href='/quit'">Вийти</button></li>
+              {% endif %}
+
+              <li class="nav-item">
+                <a class="nav-link" href="#theCart" id="upCart">Корзина (0)</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Page Content -->
+    <div class="page-heading products-heading header-text">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-content">
+              <h4>Українські футболки</h4>
+              <h2 style="font-family: 'Caveat', cursive;">В Словаччині</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      var totalProducts = 0;
+    	function AddToCart(name, id){
+        console.log('product' + id + "Size")
+        document.getElementById('cart').textContent += name + "(" + document.getElementById('product' + id + "Size").value + ", " + document.getElementById('product' + id + "Type").value + ") X" + document.getElementById('product' + id + "Count").value + "; ";
+        document.getElementById('cartIDs').value += name + "(" + document.getElementById('product' + id + "Size").value + ", " + document.getElementById('product' + id + "Type").value + ") X" + document.getElementById('product' + id + "Count").value + ";";
+    		// document.getElementById('cart').textContent += name + "; ";
+    		// document.getElementById('cartIDs').value += id + ";";
+
+        totalProducts += 1;
+        document.getElementById("upCart").innerHTML = "Корзина (" + totalProducts + ")";
+    	}
+      function ClearCart(){
+        document.getElementById('cart').textContent = "";
+        document.getElementById('cartIDs').value = "";
+
+        totalProducts = 0;
+        document.getElementById("upCart").innerHTML = "Корзина (" + totalProducts + ")";
+      }
+    </script>
+
+    <div id="toBeAppended"></div>
+
+    <script type="text/javascript">
+      var myFunc = function() {
+        var htmlCode = '<div class="best-features"> <div class="container"> <div class="row"> <div class="col-md-12"> <div class="section-heading"> <h2>Як відбувається замовлення та покупка</h2> </div> </div> <div class="col-md-12"> <div> <h4>Доставка</h4> <p>Ми прагнемо, щоб вам було з нами зручно та комфортно. Тому ми відправляємо футболки поштою в Словаччині, та в інші країни, кожного вівторка.</p> <h4>Індивідуальні принти</h4> <p>Ми також друкуємо футболки з вашим малюноком та текстом. Будь ласка, <a href="/contact">зв\'яжіться з нами</a>, якщо це Вас цікавить.</p> <br> <p>Ви також можете замовити футболку за номером: <strong>+421 949 498 278</strong></p> </div> </div> </div> </div> </div>'
+
+        document.getElementById("toBeAppended").innerHTML = htmlCode;
+      }
+      window.onload = function() {
+        setTimeout(myFunc, 1000);
+      }
+    </script>
+    
+    <div class="products" id="products">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="filters-content">
+                <div class="row grid">
+                	{% for product in products %}
+                    <div class="col-lg-4 col-md-4 all des">
+                      <div class="product-item">
+                        <img src="/static/assets/images/{{product.photoName}}" alt="{{product.name}}">
+                        <div class="down-content">
+                          <a href="#"><h4 style="width: 93%">{{product.name}}</h4></a>
+                          <h6>€{{product.price}}</h6>
+                          <p>{{product.desc}}</p>
+
+                          <label>Тип</label>
+                          <div class="product{{product.id}}Type_">
+                          <!-- onChange="Checker(this, {{product.id}})" -->
+                          <select name="product{{product.id}}Type" id="product{{product.id}}Type">
+                            <option value="Чоловічі">Чоловічі</option>
+                            <!-- onselect="document.getElementById('theHiddenSelector{{product.id}}').disabled = false" -->
+                            <option value="Дитячі">Дитячі</option>
+                            <option value="Жіночі">Жіночі</option>
+                          </select>
+                          </div>
+                          <br>
+                          <label>Розмір</label>
+                          <div class="product{{product.id}}Size_">
+                          <select name="product{{product.id}}Size" id="product{{product.id}}Size">
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="2XL">2XL</option>
+                            <option value="3XL">3XL</option>
+
+                            <!-- disabled -->
+                            <option value="1/2">1/2</option>
+                            <option value="3/4">3/4</option>
+                            <option value="5/6">5/6</option>
+                            <option value="7/8">7/8</option>
+                            <option value="9/11">9/11</option>
+                            <option value="12/14">12/14</option>
+                          </select>
+                          </div>
+                          <br>
+                          <label>Кількість</label>
+                          <input name="count" type="number" id="product{{product.id}}Count" value="1" style="width: 50%;">
+                          <br><br>
+                          <button onclick="AddToCart('{{product.name}}', '{{product.id}}')" class="buyButton">В кошик</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- <script type="text/javascript">
+                      const select = document.querySelector("#product{{product.id}}Type")
+
+                      // select.addEventListener("change", (event) => {
+                      //   if(event.target.value === "Дитячі"){
+                      //     document.getElementById("product{{product.id}}Size_").innerHTML += "<select name=\"product{{product.id}}Size\" id=\"product{{product.id}}Size\">\
+                      //       <option value=\"1/2\">1/2</option>\
+                      //       <option value=\"3/4\">3/4</option>\
+                      //       <option value=\"5/6\">5/6</option>\
+                      //       <option value=\"7/8\">7/8</option>\
+                      //       <option value=\"9/11\">9/11</option>\
+                      //       <option value=\"12/14\">12/14</option>\
+                      //     </select>";
+                      //   } else {
+                      //     document.getElementById("product{{product.id}}Size_").innerHTML = "<select name=\"product{{product.id}}Size\" id=\"product{{product.id}}Size\">\
+                      //       <option value=\"XS\">XS</option>\
+                      //       <option value=\"S\">S</option>\
+                      //       <option value=\"M\">M</option>\
+                      //       <option value=\"L\">L</option>\
+                      //       <option value=\"XL\">XL</option>\
+                      //       <option value=\"2XL\">2XL</option>\
+                      //       <option value=\"3XL\">3XL</option>\
+                      //     </select>";
+                      //   }
+                      // });
+                    </script> -->
+	                {% endfor %}
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <br><br> -->
+    <div class="call-to-action">
+      <div class="container" id="theCart">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="inner-content">
+              <div class="row">
+                <div class="col-md-8">
+                  <h4>Кошик з <em>патріотичними</em> футболками</h4>
+                  <p>Ваш кошик: </p> <span id="cart"><!-- поки порожній --></span>
+                </div>
+                <div class="col-md-4">
+                  <form id="sendOffer" action="/postRequest" method="post" autocomplete="off">
+                    <input name="cartIDs" id="cartIDs" type="hidden" value="">
+                    <input type="text" name="info" id="info" placeholder="Ваші дані (тел./пошта)" required="">
+                    <a href="#" class="filled-button" type="send" onclick="this.closest('form').submit(); return false;">Купити</a>
+                    <a class="filled-button" type="send" onclick="ClearCart()" style="color: white;">Очистити</a>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="best-features">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Як підібрати розмір</h2>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="left-content">
+              <p>Всі футболки повномірні та відповідають вказаним розмірам</p>
+            </div>
+          </div>
+          <img src="/static/assets/images/desc.jpg" alt="">
+        </div>
+      </div>
+    </div>
+    
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="inner-content">
+              <p>Copyright &copy; 2022 PrayForUA</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- Additional Scripts -->
+    <script src="/static/assets/js/custom.js"></script>
+    <script src="/static/assets/js/owl.js"></script>
+    <script src="/static/assets/js/slick.js"></script>
+    <script src="/static/assets/js/isotope.js"></script>
+    <script src="/static/assets/js/accordions.js"></script>
+
+
+    <script language = "text/Javascript"> 
+      cleared[0] = cleared[1] = cleared[2] = 0;
+      function clearField(t){
+        if(!cleared[t.id]){
+            cleared[t.id] = 1;
+            t.value='';
+            t.style.color='#fff';
+          }
+      }
+    </script>
+
+    <!-- <script type="text/javascript">
+      const firstSelect = document.querySelector('#serviceType');
+
+      firstSelect.addEventListener('change', (event) => {
+      if (event.target.value === '4') {
+        secondSelect.value = '2';
+        secondSelect.disabled = true;
+      } else if (typeof event.target.value === 'string' && event.target.value.length > 0) {
+        secondSelect.disabled = false;
+        secondSelect.value = '1';
+      }
+      });
+    </script> -->
+  </body>
+</html>

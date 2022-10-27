@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-232914063-1">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-232914063-1');
+    </script>
+    
+    {% if msg %}
+    <script type="text/javascript">
+        alert("{{msg}}");
+        window.location = window.location.href;
+    </script>
+    {% endif %}
+    <meta charset="utf-8">
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <title>PrayForUA - контакти</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="/static/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="/static/assets/css/templatemo-sixteen.css">
+    <link rel="stylesheet" href="/static/assets/css/owl.css">
+
+  </head>
+
+  <body>
+
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>  
+    <!-- ***** Preloader End ***** -->
+
+    <!-- Header -->
+    <header class="">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="home"><h2><span class="l1">Pray</span>FOR<em>UA</em></h2></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/home">Головна
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li> 
+              <li class="nav-item">
+                <a class="nav-link" href="/products">Продукти</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/contact">Контакти</a>
+              </li>
+
+              {% if session["admin"] == "confirmed" %}
+              <li class="nav-item">
+                <a class="nav-link" href="/admin">Адмін-панель</a>
+              </li>
+              <li>
+                <button class="buyButton" style="height: 50px" onclick="window.location.href='/quit'">Вийти</button>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Page Content -->
+    <div class="page-heading contact-heading header-text">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-content">
+              <h4>Контакти</h4>
+              <h2 style="font-family: 'Caveat', cursive;">Зворотній зв'язок</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="find-us">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Ми на карті</h2>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div id="map">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2658.7236528017384!2d17.150488915616425!3d48.2119385792294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476c8e6dcf65abad%3A0xf6b73bd005bdde89!2sMudrochova%202%2C%20831%2006%20Ra%C4%8Da!5e0!3m2!1suk!2ssk!4v1652817161335!5m2!1suk!2ssk" width="100%" height="330px" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="left-content">
+              <h4></h4>
+              <p>Залиште нам свої контакти, і ми з Вами зв'яжемось.<br><br>Ви також можете знайти нас через соц. мережі.</p>
+              <ul class="social-icons">
+                <li><a href="https://www.facebook.com/PrayforUa-100880645955691/"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://t.me/prayfor_ua/"><i class="fa"><img src="/static/assets/images/telegramLogo.png" style="width: 30px"></i></a></li>
+                <li><a href="viber://chat?number=%2B421949498278"><i class="fa"><img src="/static/assets/images/viberLogo.png" style="width: 30px"></i></a></li>
+                <li><a href="https://wa.me/+421949498278/"><i class="fa"><img src="/static/assets/images/whatsappLogo.png" style="width: 30px"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="send-message">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Зворотній зв'язок</h2>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="contact-form">
+              <form id="contact" action="" method="post" autocomplete="off">
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12">
+                    <fieldset>
+                      <input name="name" type="text" class="form-control" id="name" placeholder="Ім'я" required="">
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-12 col-md-12 col-sm-12">
+                    <fieldset>
+                      <input name="phone" type="tel" class="form-control" id="phone" placeholder="Телефон" required="">
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-12">
+                    <fieldset>
+                      <textarea name="message" rows="6" class="form-control" id="message" placeholder="Ваше повідомлення" required=""></textarea>
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-12">
+                    <fieldset>
+                      <button type="submit" id="form-submit" class="filled-button">Відправити</button>
+                    </fieldset>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <ul class="accordion">
+              <li>
+                  <a>Контакти</a>
+                  <div class="content">
+                      <p>Ви можете зв'язатись з нами по телефону <strong>+421 949 498 278</strong><br><br>Ми також є в Facebook.</p>
+                  </div>
+              </li>
+              <li>
+                  <a>Своя футболка</a>
+                  <div class="content">
+                      <p>Ви можете замовити у нас футболку зі своїм малюнком та текстом<br><br>Якщо у Вас є таке бажання, будь ласка, напишіть нам в цю форму.</p>
+                  </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="inner-content">
+              <p>Copyright &copy; 2022 PrayForUA</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- Additional Scripts -->
+    <script src="/static/assets/js/custom.js"></script>
+    <script src="/static/assets/js/owl.js"></script>
+    <script src="/static/assets/js/slick.js"></script>
+    <script src="/static/assets/js/isotope.js"></script>
+    <script src="/static/assets/js/accordions.js"></script>
+
+
+    <script language = "text/Javascript"> 
+      cleared[0] = cleared[1] = cleared[2] = 0;
+      function clearField(t){
+        if(!cleared[t.id]){
+            cleared[t.id] = 1;
+            t.value='';
+            t.style.color='#fff';
+          }
+      }
+    </script>
+  </body>
+</html>
